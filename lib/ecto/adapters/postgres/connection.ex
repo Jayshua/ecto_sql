@@ -23,7 +23,7 @@ if Code.ensure_loaded?(Postgrex) do
       do: [exclusion: constraint]
     def to_constraints(%Postgrex.Error{postgres: %{code: :check_violation, constraint: constraint}}, _opts),
       do: [check: constraint]
-    def to_constraints(%Postgrex.Error{postgres: %{code: :raise_exception, message: message}}, _opts)
+    def to_constraints(%Postgrex.Error{postgres: %{code: :raise_exception, message: message}}, _opts),
       do: [raise: message]
 
     # Postgres 9.2 and earlier does not provide the constraint field
